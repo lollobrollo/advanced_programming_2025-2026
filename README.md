@@ -46,7 +46,7 @@ Unless otherwise specified, all content here is licensed under a
 # Links and resources
 - [Google Classroom](https://classroom.google.com/c/ODA4NDQ4MzcwMTQw?cjc=xjhuxupx). **You are required to join. Please use your full name (no nicknames allowed)**.
 - [Live streaming (Zoom)](https://sissa-it.zoom.us/j/88441969598?pwd=mzN8aPOmlfs6NnOXxmXcKnuEq0px22.1) (meeting ID: 884 4196 9598, passcode: 301029).
-- [Recordings (Moodle)](https://moodle2.units.it/course/view.php?id=16153)
+- [Recordings (Moodle)](https://moodle2.units.it/course/view.php?id=16153) (access key: *AdvProg2526*).
 
 ---
 
@@ -65,7 +65,7 @@ TBD
 | Wed 08 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. [[Markdown](exercises/02/02-c++_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/02/02-c++_intro.pdf)] |
 | Tue 14 Oct 2025 | 14:00 - 16:00 | 005     | Object oriented programming. Classes and access control in C++. Operators. [[Markdown](lectures/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/03/03-c++_classes.pdf)] |
 | Wed 15 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/03/03-c++_classes.pdf)] |
-| Tue 21 Oct 2025 | 14:00 - 16:00 | 005     | Inheritance and polymorphism. |
+| Tue 21 Oct 2025 | 14:00 - 16:00 | 005     | Inheritance and polymorphism. [[Markdown](lectures/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/04/04-c++_inheritance_polymorphism.pdf)] |
 | Wed 22 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. |
 | Tue 28 Oct 2025 | 14:00 - 16:00 | 005     | Functions. Templates and generic programming. |
 | Wed 29 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. |
