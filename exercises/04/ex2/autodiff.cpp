@@ -36,7 +36,7 @@ const double Power::derivative(double x) const {
   const double n = this->exponent->evaluate(x);
   const double db = this->base->derivative(x);
   return n * std::pow(b, n - 1.0) * db;
-}
+};
 
 /* DIVISION */
 const double Division::evaluate(double x) const {
