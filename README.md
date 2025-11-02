@@ -52,7 +52,7 @@ Unless otherwise specified, all content here is licensed under a
 
 # Homeworks
 
-TBD
+- Homework 01 [[Markdown](homeworks/homework_01.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/ODA4NDQ4MzcwMTQw/a/ODE4MTkzMTkyNDgx/details)]. **Due date: 09 November 2025**.
 
 ---
 
@@ -67,8 +67,8 @@ TBD
 | Wed 15 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/03/03-c++_classes.pdf)] |
 | Tue 21 Oct 2025 | 14:00 - 16:00 | 005     | Inheritance and polymorphism. [[Markdown](lectures/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/04/04-c++_inheritance_polymorphism.pdf)] |
 | Wed 22 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. [[Markdown](exercises/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/04/04-c++_inheritance_polymorphism.pdf)] |
-| Tue 28 Oct 2025 | 14:00 - 16:00 | 005     | Functions. Templates and generic programming. |
-| Wed 29 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. |
+| Tue 28 Oct 2025 | 14:00 - 16:00 | 005     | Functions. Templates and generic programming. [[Markdown](lectures/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/lectures/05/05-c++_functions_templates.pdf)] |
+| Wed 29 Oct 2025 | 11:00 - 13:00 | 005     | Exercise session. [[Markdown](exercises/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2025-2026/exercises/05/05-c++_functions_templates.pdf)] |
 | Tue 04 Nov 2025 | 14:00 - 16:00 | 005     | The Standard Template Library. |
 | Wed 05 Nov 2025 | 11:00 - 13:00 | 005     | Smart pointers, move semantics, STL utilities. |
 | Tue 11 Nov 2025 | 14:00 - 16:00 | 005     | Exercise session. |
