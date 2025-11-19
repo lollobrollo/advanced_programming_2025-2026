@@ -31,20 +31,50 @@ _class: titlepage
 
 ---
 
-# Introduction
+# Why learn Make?
 
-### Prerequisites
+**From last week's lecture**, you learned how to create and use static and shared libraries in C++. But managing compilation commands manually becomes tedious:
+```bash
+g++ -c -fPIC math.cpp -o math.fpic.o
+g++ -shared math.fpic.o -o libmath.so
+g++ -c main.cpp -o main.o
+g++ main.o -Lmath/ -lmath -Wl,-rpath,math/ -o main
+```
 
-Ensure the `make` program is installed by checking `make --version`. If not installed, use package managers such as `apt` on Unix or [`Homebrew`](https://formulae.brew.sh/formula/make) on macOS. Additionally, have a C++ compiler like `g++` or `clang++` ready for compilation.
+**Problems with manual compilation:**
+- 📝 Repetitive typing of long commands, many flags to remember, error-prone process
+- ⏱️ No automatic tracking of which files are changed
+- 🔄 Recompiling everything even when only one file is changed
+- 👥 Difficult to share build instructions with team members
+
+**Make solves these problems** by automating the build process with dependency tracking!
+
+---
+
+# Real-world impact of build systems
+
+- Large C++ projects can have **thousands of source files**
+- Full rebuild might take **hours** without smart dependency tracking
+- Make ensures only **modified files** (and their dependents) are recompiled
+
+**Example:** Compiling the Linux kernel (~36k source files, ~26k header files)
+- Full build: 30-60 minutes
+- Incremental build (after small change): **seconds to minutes**
+
+**Today's goals:**
+1. Master Make's dependency tracking and automation
+2. Build and link libraries efficiently and apply these skills to real libraries
+3. Understand advanced topics: dynamic loading, link order
+
+**By the end:** You'll have a tool to manage complex C++ projects professionally!
 
 ---
 
 # Getting started
 
-Let's start with a simple C++ program consisting of three files: 
-- `math.hpp`
-- `math.cpp`
-- `main.cpp`
+Ensure the `make` program is installed by checking `make --version`. If not installed, use package managers such as `apt` on Debian/Ubuntu or [`Homebrew`](https://formulae.brew.sh/formula/make) on macOS.
+
+Let's start with a simple C++ program consisting of three files: `math.hpp`, `math.cpp`, and `main.cpp`.
 
 #### Manual compilation
 
@@ -62,7 +92,7 @@ This process involves creating object files and linking them to generate the exe
 
 # Definitions
 
-- In a Makefile, a **target** represents the desired output or action. It can be an executable, an object file, or a specific action like "clean."
+- In a Makefile, a **target** represents the desired output or action. It can be an executable, an object file, or a specific action like *clean*.
 
 - **Prerequisites** are files or conditions that a target depends on. If any of the prerequisites have been modified more recently than the target, or if the target does not exist, the associated recipe is executed.
 
@@ -85,8 +115,8 @@ main: main.cpp math.cpp
 
 To build the target, simply run:
 ```bash
-make        # Builds the 'main' target.
-make main   # Explicitly builds 'main'.
+make      # Builds the first target in the Makefile ('main', in this case).
+make main # Explicitly builds 'main'.
 ```
 
 ---
@@ -99,12 +129,14 @@ We can enhance readability and maintainability by using variables:
 CXX=g++                                      # The compiler.
 CPPFLAGS=-I.                                 # Preprocessor flags.
 CXXFLAGS=-std=c++17 -Wall -Wpedantic -Werror # Compiler flags.
+LDFLAGS=                                     # Linker flags (empty for now).
+LDLIBS=                                      # Libraries to link (empty for now).
 
 main: main.cpp math.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) main.cpp math.cpp -o main
 ```
 
-**Note:** These variable names (`CXX`, `CPPFLAGS`, `CXXFLAGS`) are GNU Make conventions. Using them allows users to override compilation settings from the command line:
+**Note:** These variable names (`CXX`, `CPPFLAGS`, `CXXFLAGS`, `LDFLAGS`, `LDLIBS`) are GNU Make conventions. Using them allows users to override compilation settings from the command line:
 ```bash
 make CXX=clang++ CPPFLAGS="-I/home/my/usr/include" CXXFLAGS="-O3 -march=native"
 ```
@@ -119,6 +151,8 @@ CPPFLAGS=-I.
 CXXFLAGS=-std=c++17 -Wall -Wpedantic -Werror
 DEPS=math.hpp
 
+# This rule requires manually listing headers in DEPS.
+# See next slide for automatic dependency generation.
 %.o: %.cpp $(DEPS)
 	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $< -o $@
 
@@ -140,13 +174,17 @@ For truly automatic dependency generation, modern Makefiles use compiler flags l
 
 ```make
 DEPFLAGS=-MMD -MP
-DEPS=$(OBJ:.o=.d)
+DEPS=$(OBJ:.o=.d) # Pattern substitution.
 
 %.o: %.cpp
 	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $(DEPFLAGS) $< -o $@
 
 -include $(DEPS)
 ```
+
+**Explanation:**
+- `-MMD`: Generate dependency files (`.d`) during compilation.
+- `-MP`: Add phony targets for each dependency to avoid errors if headers are deleted.
 
 ---
 
@@ -227,7 +265,7 @@ make -d
 
 # Building a library and linking against it
 
-Suppose we have a simple C++ library with two files
+Suppose we have a simple C++ library with two files:
 - `math.hpp`
 - `math.cpp`
 
@@ -251,6 +289,8 @@ DEPS=math.hpp
 
 LIB_NAME_STATIC=libmath.a
 LIB_NAME_SHARED=libmath.so
+
+.PHONY: all static shared clean
 
 all: static shared
 
@@ -297,6 +337,7 @@ OBJ=$(SRC:.cpp=.o)
 all: main
 
 main: $(OBJ)
+	# Order matters! Object files first, then library paths, then libraries.
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 %.o: %.cpp
@@ -349,8 +390,8 @@ Despite its advantages, Makefiles are platform-dependent, necessitating adaptati
   tar xzvf v4.0.12.tar.gz
   ```
 - The source files of `muParserX` are located inside the `muparserx-4.0.12/parser/` folder.
-- In that folder, write a Makefile to compile `muParserX` into a shared library `libmuparserx.so`.
-- Write a Makefile that compiles and links the program in `hints/ex1.cpp` with `muParserX`.
+- In that folder, write a Makefile to compile `muParserX` into a shared library `libmuparserx.so`. **Bonus**: add a target `install` that copies header files and the shared library into a user-specified folder.
+- Write a Makefile that compiles and links the program in `hints/ex1.cpp` against `muParserX`.
 
 ---
 
@@ -388,9 +429,9 @@ Would the same considerations apply if dynamic linking (shared libraries) were u
 
 The `hints/ex4/` directory contains a module `functions` containing the definition of three mathematical functions. The source file `functions.cpp` gets compiled into a shared library `libfunctions.so`, using *C linkage* to prevent [*name mangling*](https://en.wikipedia.org/wiki/Name_mangling#C++).
 
-Notably, when compiling the source file `ex4.cpp` into an executable, there is no need to link against `libfunctions.so`.
-
-1. Fill in the missing parts in `ex4.cpp` to dynamically load the library.
+1. Fill in the missing parts in `ex4.cpp` to dynamically load the library, using the functions `dlopen()`, `dlsym()`, and `dlclose()`.
 2. Prompt the user for the name of the function to evaluate at a given point, selecting from the ones available in the library.
 3. Perform the evaluation and print the result.
 4. Release the library.
+
+**Note**: when compiling the source file `ex4.cpp` into an executable, there is no need to link against `libfunctions.so`.
