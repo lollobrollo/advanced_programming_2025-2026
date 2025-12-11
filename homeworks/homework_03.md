@@ -25,8 +25,8 @@ This assignment builds on Homework 02, integrating new topics like:
 - Python and built-in data types.
 - Object-oriented programming in Python.
 - Python modules and packages.
-- Use of Python ecosystem for scientific computing (NumPy, SciPy, Matplotlib, seaborn, pandas, ...)
 - C++ and Python integration using pybind11.
+- Use of Python ecosystem for scientific computing (NumPy, SciPy, Matplotlib, seaborn, pandas, ...)
 
 Build your Homework 03 on **module A)** and **one module among B), C), D)** from Homework 02 of your choice. You may reuse and extend your Homework 02 code or start fresh - either approach is acceptable.
 
@@ -38,7 +38,7 @@ Your task is to enhance the C++ scientific computing toolbox with Python binding
 
 1. **Python bindings using pybind11**: Create Python bindings for the C++ modules, ensuring Python users can seamlessly access all functionalities.
 
-2. **C++-Python integration and performance analysis**: Demonstrate bidirectional interaction (e.g., C++ callbacks in Python or vice versa).Verify that the bindings provide correct results. Discuss the performance balance between C++ and Python, also in view of possible efficiency gains of the hybrid approach.
+2. **C++-Python integration and performance analysis**: Demonstrate bidirectional interaction (e.g., C++ callbacks in Python or vice versa). Verify that the bindings provide correct results. Discuss the performance balance between C++ and Python, also in view of possible efficiency gains of the hybrid approach.
 
 3. **Object-oriented Python extensions**: Design Python classes complementing your C++ modules, showcasing OOP principles. Leverage Pythonic features: dynamic typing, decorators, magic methods, context managers.
 

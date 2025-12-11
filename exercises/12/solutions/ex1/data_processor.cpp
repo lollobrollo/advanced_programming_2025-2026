@@ -1,4 +1,5 @@
 #include "data_processor.hpp"
+
 #include <cmath>
 #include <sstream>
 
@@ -122,12 +123,11 @@ PYBIND11_MODULE(data_processor, m) {
       .def("compute_mean", &DataProcessor::compute_mean)
       .def("compute_std_dev", &DataProcessor::compute_std_dev)
       .def_static("get_n_instances", &DataProcessor::get_n_instances)
-      .def("__getitem__",
-           (const double &(DataProcessor::*)(const unsigned int &) const) &
-               DataProcessor::operator[])
+      .def("__getitem__", py::overload_cast<const unsigned int &>(
+                              &DataProcessor::operator[], py::const_))
       .def("__setitem__", [](DataProcessor &dp, unsigned int index,
                              double value) { dp[index] = value; })
-      .def("__repr__", [](const DataProcessor &dp) {
+      .def("__str__", [](const DataProcessor &dp) {
         std::ostringstream ss;
         ss << dp;
         return ss.str();
